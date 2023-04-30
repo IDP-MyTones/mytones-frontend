@@ -1,0 +1,48 @@
+
+
+.sidebar {
+  &-wrapper {
+    @apply
+      bg-white
+      w-72
+      h-full
+  }
+
+  &-logo {
+    @apply
+      w-full
+      flex
+      items-center
+      justify-center
+      pb-6
+      pt-2
+  }
+
+  &-links {
+    li {
+      color: #4D4D56;
+      font-weight: 500;
+      @apply
+        transition-all
+        flex
+        items-center
+        px-4
+        py-3;
+      &:hover {
+        background-color: #F0F0F5;
+        color: #4343EF;
+        @apply
+          cursor-pointer
+          border-r-8
+        border-indigo-600
+      }
+    }
+
+    i {
+      @apply
+        text-sm
+        w-12
+        text-center
+    }
+  }
+}

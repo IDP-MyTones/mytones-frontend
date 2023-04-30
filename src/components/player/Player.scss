@@ -1,0 +1,127 @@
+//#root {
+//  width: 400px !important;
+//}
+
+.queue-container {
+  height: 90%;
+  overflow: scroll;
+
+  table {
+    @apply
+      w-full;
+
+    tr {
+      @apply mx-5;
+    }
+
+    td {
+      @apply text-center;
+    }
+  }
+
+}
+.queue-item {
+
+  .image {
+    width: 50px;
+    height: 50px;
+    @apply
+      rounded-xl
+      overflow-hidden
+      flex
+      items-center
+      justify-center
+      mx-auto
+      my-2
+  }
+
+  .actions {
+    @apply w-5 flex items-center justify-center mx-auto text-xl;
+
+    &:hover {
+      @apply text-blue-500
+    }
+  }
+
+  @apply
+    transition-all
+    my-1;
+
+  &:hover {
+    background-color: #F0F0F5;
+    @apply
+      cursor-pointer
+  }
+}
+
+.streamer {
+
+  &-header {
+    @apply text-center mb-2;
+
+    font-size: 18px;
+  }
+
+  &-image {
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    img {
+      height: 100%;
+      margin: 0 auto;
+
+      @apply shadow-2xl
+    }
+  }
+
+  &-track-info {
+    @apply text-center my-1;
+    .title {
+      color: #24242E;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .artists {
+      color: #4D4D56;
+    }
+  }
+
+  &-controls {
+    @apply
+      text-2xl
+      items-center;
+
+    & > * {
+      color: #4343EF;
+      @apply
+        cursor-pointer
+    }
+
+    & .play, & .stop {
+      @apply text-5xl
+    }
+
+    & .disabled {
+      color: #B4B4F8;
+    }
+
+    & .repeat {
+      position: relative;
+
+      & .repeat-1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-weight: 700;
+        font-size: 13px;
+      }
+    }
+  }
+
+
+}
+
