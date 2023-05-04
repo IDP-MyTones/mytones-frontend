@@ -6,6 +6,7 @@ import {store} from "./store/store";
 import {fetchQueuePage} from "./store/queue/queue.reducer";
 import {BaseLayout} from "./components/layouts/BaseLayout";
 import {init} from "./store/player/player.reducer";
+import {PlaylistsPage} from "./pages/playlists/Playlists";
 
 function App() {
     if (!store.getState().queue.isFetching) {
@@ -27,7 +28,9 @@ function App() {
           {/*    </div>*/}
           {/*</div>*/}
 
-          <BaseLayout />
+          <BaseLayout>
+              <PlaylistsPage />
+          </BaseLayout>
       </Provider>
   );
 }

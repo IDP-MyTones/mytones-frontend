@@ -1,0 +1,57 @@
+
+.playlists {
+  &-wrapper {
+    @apply
+      rounded-2xl
+      p-4
+      bg-white
+  }
+}
+
+.playlist-card {
+
+  &-wrapper {
+    @apply
+      w-60
+      rounded-md
+      shadow-md
+      transition-all
+      p-2
+      relative;
+    &:hover {
+      @apply
+        shadow-2xl
+        bg-gray-100;
+
+      .play--btn {
+        @apply block;
+      }
+    }
+
+    .play--btn {
+      @apply
+        transition-all
+        text-5xl
+        text-blue-700
+        hidden
+        absolute
+        bottom-16
+        right-4;
+    }
+  }
+}
+
+.title {
+  @apply
+    text-lg
+    font-bold
+}
+
+.artists {
+  a {
+    &:hover {
+      @apply
+        text-blue-500
+    }
+  }
+}

@@ -57,7 +57,7 @@ export class Paginator<T> {
     }
 
     public prev(): Observable<Page<T>> {
-        if (this.pageable.page == 0) {
+        if (this.pageable.page === 0) {
             return of({ content: [], number: -1, size: -1, totalPages: -1, totalElements: -1 });
         }
         this.pageable = prevPageable(this.pageable)!;

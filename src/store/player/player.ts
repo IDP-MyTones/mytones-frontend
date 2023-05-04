@@ -62,8 +62,6 @@ audio.onended = () => {
         return;
     }
 
-    let x = new HTMLVideoElement();
-    x.controls
     if (state.repeatType === RepeatType.TRACK) {
         return void play();
     }
