@@ -10,16 +10,17 @@ import {
 } from '@tanstack/react-table'
 import {useSelector} from "react-redux";
 import {RootState, store} from "../../store/store";
-import {fetchQueuePage, QueueState} from "../../store/queue/queue.reducer";
+import {fetchQueuePage, QueueState} from "../../store/queue.reducer";
 import {Track} from "../../models/track";
-import {fetchTrack} from "../../store/player/player.reducer";
+import {PlayerState, playTrackFacade} from "../../store/player/player.reducer";
+import {Artists} from "../../pages/albums/Album";
 
 const columnHelper = createColumnHelper<Track>();
 
 const AudioDetails = ({ audio }: {audio: Track}) => (
     <div className="flex flex-col w-full details text-left">
         <div className="font-semibold">{audio.name}</div>
-        <div className="text-sm">{audio.artists.map(a => a.name).join(", ")}</div>
+        <div className="text-xs"><Artists artists={audio.artists}/></div>
     </div>
 );
 
@@ -46,10 +47,6 @@ const _columns = [
         id: 'duration',
         cell: info => <div>{formatDuration(info.row.original.duration)}</div>
     }),
-    columnHelper.display({
-        id: 'actions',
-        cell: info => <div className="actions"><i className="fa-solid fa-ellipsis"></i></div>
-    })
 ];
 
 
@@ -62,7 +59,7 @@ export const Queue = () => {
 
     const handleScroll = (event: any) => {
         const { scrollHeight, scrollTop, clientHeight } = event.currentTarget as HTMLElement;
-        if (queueStore.totalTracks !== queueStore.fetchedTracks.length &&
+        if (queueStore.totalTracks && queueStore.totalTracks > queueStore.fetchedTracks.length &&
             !queueStore.isFetching && scrollHeight - scrollTop - clientHeight < 300) {
             store.dispatch(fetchQueuePage())
         }
@@ -95,11 +92,12 @@ export const Queue = () => {
 const QueueItem = ({ row }: {row: Row<Track>}) => {
 
     const handleClick = () => {
-        store.dispatch(fetchTrack({queueIndex: row.index}))
+        playTrackFacade(row.index);
     }
+    const playerState = useSelector<RootState>(root => root.player) as PlayerState;
 
     return (
-        <tr className="queue-item" onClick={handleClick}>
+        <tr className={`queue-item ${playerState.currentTrack?.id === row.original.id ? 'active' : ''}`} onClick={handleClick}>
             {row.getVisibleCells().map(cell => {
                 return (
                     <td className={cell.id} key={cell.id}>

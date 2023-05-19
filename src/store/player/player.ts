@@ -1,33 +1,7 @@
 import {store} from "../store";
-import {fetchTrack, pause, refresh, RepeatType} from "./player.reducer";
+import {pause, playTrackFacade, refresh, RepeatType} from "./player.reducer";
 
 const audio = new Audio();
-
-// const _play = () => {
-//
-//     const playlist = store.getState().queue.playlist;
-//     const player = store.getState().player;
-//
-//     return fetchStreamableTrack(playlist!.id, player.queueOrder[player.currentTrackIndex!])
-//         .then(({ url }) => store.getState().player)
-//
-//     return play(store.getState().player.currentTrackTime, )
-// }
-
-// endTrack: state => {
-//     if (state.repeatType === RepeatType.NONE && state.currentTrackIndex === state.queueOrder.length) {
-//         return;
-//     }
-//
-//     state.currentTrackTime = 0;
-//     if (state.repeatType === RepeatType.TRACK) {
-//         return void Player.play();
-//     }
-//
-//     state.currentTrackDuration = state.currentTrack!.duration;
-//     state.currentTrackIndex = (state.currentTrackIndex! - 1 + state.queueOrder.length) % state.queueOrder.length;
-//     void Player.play(state.currentTrackTime, state.currentTrack!.url);
-// },
 
 const play = (time?: number, url?: string): Promise<number> => {
     if (url) {
@@ -38,7 +12,7 @@ const play = (time?: number, url?: string): Promise<number> => {
         audio.currentTime = time!;
     }
 
-    return audio.play().then(() => audio.duration);
+    return audio.play().then(() => audio.duration).catch(x => {console.log(x); return 0}) ;
 }
 
 const details = (): { duration: number, currentTime: number } => {
@@ -62,8 +36,6 @@ audio.onended = () => {
         return;
     }
 
-    let x = new HTMLVideoElement();
-    x.controls
     if (state.repeatType === RepeatType.TRACK) {
         return void play();
     }
@@ -75,7 +47,7 @@ audio.onended = () => {
     const queueIndex = state.queueOrder[queueOrderIndex!];
 
     clearInterval(intervalId);
-    store.dispatch(fetchTrack({queueIndex, queueOrderIndex}));
+    playTrackFacade(queueIndex, queueOrderIndex);
 }
 
 export default {

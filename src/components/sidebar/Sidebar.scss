@@ -6,6 +6,7 @@
       bg-white
       w-72
       h-full
+      text-sm
   }
 
   &-logo {
@@ -27,7 +28,7 @@
         flex
         items-center
         px-4
-        py-3;
+        py-2;
       &:hover {
         background-color: #F0F0F5;
         color: #4343EF;

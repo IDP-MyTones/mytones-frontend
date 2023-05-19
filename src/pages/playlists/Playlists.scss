@@ -1,0 +1,117 @@
+
+.playlist {
+  &-header {
+    background: rgb(14,0,255, 0.50);
+    background: linear-gradient(180deg, rgba(14,0,255,0.50) 0%, rgba(255,255,255,1) 66%);
+    @apply
+      flex
+      items-center
+      p-5
+      -mt-5
+      shadow
+      rounded-t-2xl;
+
+    &-img {
+      @apply w-64 mr-4;
+    }
+
+    h2 {
+      @apply text-5xl font-extrabold
+    }
+  }
+}
+
+.playlists {
+  &-wrapper {
+    @apply
+      -mr-10
+      pr-10
+      rounded-2xl
+      p-4
+  }
+}
+
+.playlist-card {
+
+  &-wrapper {
+    @apply
+      w-56
+      rounded-md
+      shadow-md
+      transition-all
+      p-2
+      relative;
+    &:hover {
+      @apply
+        shadow-2xl
+        bg-gray-100;
+
+      .play--btn {
+        @apply block;
+      }
+    }
+
+    .play--btn {
+      @apply
+        transition-all
+        text-5xl
+        text-blue-700
+        hidden
+        absolute
+        bottom-16
+        right-4;
+    }
+
+  }
+}
+
+.album-card {
+
+  &-wrapper {
+    @apply
+    w-56
+    rounded-md
+    shadow-md
+    transition-all
+    p-2
+    relative;
+    &:hover {
+      @apply
+      shadow-2xl
+      bg-gray-100;
+
+      .play--btn {
+        @apply block;
+      }
+    }
+
+    .play--btn {
+      @apply
+      transition-all
+      text-5xl
+      text-blue-700
+      hidden
+      absolute
+      bottom-16
+      right-4;
+    }
+
+  }
+}
+
+.title {
+  @apply
+    text-xs
+    py-2
+    font-bold
+}
+
+.artists {
+  a {
+    @apply text-xs;
+    &:hover {
+      @apply
+        text-blue-500
+    }
+  }
+}

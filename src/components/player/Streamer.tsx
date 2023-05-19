@@ -5,16 +5,13 @@ import Box from '@mui/material/Box';
 import {useSelector} from "react-redux";
 import {RootState, store} from "../../store/store";
 import {
-    fetchTrack,
     pause,
     play,
-    PlayerState,
+    PlayerState, playTrackFacade,
     repeat,
     RepeatType,
     shuffle
 } from "../../store/player/player.reducer";
-import {Track} from "../../models/track";
-import player from "../../store/player/player";
 
 export const Streamer = () => {
 
@@ -64,7 +61,7 @@ export const MusicPlayerSlider = ({playerState, handleChange}: {playerState: Pla
         const queueOrderIndex = (playerState.currentTrackIndex! - 1 + playerState.queueOrder.length) % playerState.queueOrder.length;
         const queueIndex = playerState.queueOrder[queueOrderIndex!];
 
-        store.dispatch(fetchTrack({queueIndex, queueOrderIndex}));
+        playTrackFacade(queueIndex, queueOrderIndex);
     }
 
     const handleNext = () => {
@@ -74,9 +71,7 @@ export const MusicPlayerSlider = ({playerState, handleChange}: {playerState: Pla
         const queueOrderIndex = (playerState.currentTrackIndex! + 1) % playerState.queueOrder.length;
         const queueIndex = playerState.queueOrder[queueOrderIndex!];
 
-        console.log(playerState.currentTrackIndex)
-
-        store.dispatch(fetchTrack({queueIndex, queueOrderIndex}));
+        playTrackFacade(queueIndex, queueOrderIndex);
     }
 
     const handlePlay = () => {
@@ -100,7 +95,7 @@ export const MusicPlayerSlider = ({playerState, handleChange}: {playerState: Pla
     return (
         <>
             {playerState.currentTrack &&
-                <div className="mx-5 border-t-2 border-t-gray-400 mt-3 pt-3">
+                <div className="mx-5 border-t-2 border-t-gray-400 mt-3 pt-3 pb-8">
                     <h3 className="streamer-header">NOW PLAYING</h3>
 
                     <div className="streamer-image">

@@ -1,14 +1,12 @@
-//#root {
-//  width: 400px !important;
-//}
 
 .queue-container {
-  height: 90%;
-  overflow: scroll;
+  padding-bottom: 10px;
+  overflow-y: scroll;
 
   table {
     @apply
-      w-full;
+      w-full
+      text-sm;
 
     tr {
       @apply mx-5;
@@ -45,16 +43,31 @@
 
   @apply
     transition-all
-    my-1;
+    my-1
+    items-center;
 
-  &:hover {
+  &:hover, &.active {
     background-color: #F0F0F5;
     @apply
       cursor-pointer
   }
 }
+td.details {
+  width: 80%;
+}
+td.index {
+  flex-shrink: 0;
+}
 
+td.actions {
+  align-items: center;
+}
+
+td.image {
+  flex-shrink: 0;
+}
 .streamer {
+  margin-bottom: 15px;
 
   &-header {
     @apply text-center mb-2;
@@ -80,17 +93,18 @@
     @apply text-center my-1;
     .title {
       color: #24242E;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 700;
     }
     .artists {
+      font-size: 15px;
       color: #4D4D56;
     }
   }
 
   &-controls {
     @apply
-      text-2xl
+      text-base
       items-center;
 
     & > * {
@@ -121,7 +135,5 @@
       }
     }
   }
-
-
 }
 
