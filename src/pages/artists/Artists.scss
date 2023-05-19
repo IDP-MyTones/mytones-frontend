@@ -1,0 +1,59 @@
+.artists-table {
+  @apply
+    w-full
+    h-full
+    overflow-y-scroll
+    text-xl;
+
+  .image {
+    @apply
+      flex
+      items-center
+      w-20
+      h-20
+      rounded-full
+      overflow-hidden
+      shadow-2xl;
+
+    img {
+      @apply rounded-full w-20 h-20
+    }
+  }
+  table {
+    @apply w-full;
+  }
+
+  .item {
+    @apply w-full;
+
+
+    &:hover, &.active {
+      @apply bg-gray-200 cursor-pointer;
+    }
+
+  }
+
+  .index {
+    @apply w-1/12 text-center text-base font-semibold;
+  }
+  .name {
+    @apply
+      pl-6
+      py-8
+      w-full
+  }
+}
+
+.image-select-wrapper {
+
+  div {
+    opacity: 0;
+    @apply transition
+  }
+
+  &:hover {
+    div {
+      opacity: 1;
+    }
+  }
+}

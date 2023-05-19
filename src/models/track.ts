@@ -7,8 +7,13 @@ export interface Track {
     artists: SimpleArtist[];
     albumId: number;
     duration: number;
+    url: string;
+    inFavorites: boolean;
 }
 
-export interface StreamableTrack extends Track {
+export interface UploadedTrack {
+    name: string;
+    artists: SimpleArtist[];
+    duration: number;
     url: string;
 }
