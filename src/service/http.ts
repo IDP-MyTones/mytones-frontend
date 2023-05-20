@@ -1,6 +1,5 @@
 import {store} from "../store/store";
-
-export const BASE_URL = 'http://localhost:8080/api/v1';
+import * as process from "process";
 
 
 const buildURLQuery = (obj: Object) =>
@@ -23,7 +22,7 @@ const buildHeaders = () => {
 export const getHttp = <T> (path: string, params?: Object): Promise<T> => {
     const headers = buildHeaders();
 
-    let url = BASE_URL + path;
+    let url = process.env.REACT_APP_API_URL as string;
     if (params) {
         url += '?' + buildURLQuery(params);
     }
@@ -35,6 +34,7 @@ export const getHttp = <T> (path: string, params?: Object): Promise<T> => {
     }).then(response => response.json());
 }
 
+
 export const postHttp = <T> (path: string, body?: any, params?: Record<string, string | number | boolean>) => {
     return simplePostHttp(path, body, params).then(response => response.json());
 }
@@ -42,7 +42,7 @@ export const postHttp = <T> (path: string, body?: any, params?: Record<string, s
 export const simplePostHttp = (path: string, body?: any, params?: Record<string, string | number | boolean>) => {
     const headers = buildHeaders();
 
-    let url = BASE_URL + path;
+    let url = process.env.REACT_APP_API_URL as string;
     if (params) {
         url += '?' + buildURLQuery(params);
     }
@@ -57,7 +57,7 @@ export const simplePostHttp = (path: string, body?: any, params?: Record<string,
 export const deleteHttp = (path: string, params?: Object) => {
     const headers = buildHeaders();
 
-    let url = BASE_URL + path;
+    let url = process.env.REACT_APP_API_URL as string;
     if (params) {
         url += '?' + buildURLQuery(params);
     }
@@ -75,7 +75,7 @@ export const putHttp = <T> (path: string, body: any, params?: Object): Promise<T
 export const simplePutHttp = (path: string, body: any, params?: Object): Promise<any> => {
     const headers = buildHeaders();
 
-    let url = BASE_URL + path;
+    let url = process.env.REACT_APP_API_URL as string;
     if (params) {
         url += '?' + buildURLQuery(params);
     }

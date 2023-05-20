@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getHttp} from "../service/http";
 import {store} from "./store";
 
 export interface UserState {
@@ -14,8 +13,13 @@ const defaultState: UserState = JSON.parse(localStorage.getItem("auth") || 'null
 
 setTimeout(() => {
     if (defaultState.isLogged) {
-        getHttp<any>('/users/me')
-            .then(({role}) => store.dispatch(loginAction({
+        fetch('http://localhost:8081/api/v1/users/me', {
+                headers: {
+                    "Authorization": `Bearer ${defaultState.accessToken}`
+                }
+            })
+            .then(x => x.json())
+            .then(({role}: any) => store.dispatch(loginAction({
                 role,
                 accessToken: store.getState().user.accessToken!
             })))

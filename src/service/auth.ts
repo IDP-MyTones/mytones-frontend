@@ -15,10 +15,23 @@ export interface TokenModel {
 }
 
 export const login = (username: string, password: string) => {
-    return postHttp<TokenModel>("/auth/login", { username, password })
-        .then(token => store.dispatch(loginAction(token)));
+    return fetch("http://localhost:8081/api/v1/auth/login", {
+            method: 'POST',
+            body: JSON.stringify({username, password}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((x) => x.json())
+        .then((token: any) => store.dispatch(loginAction(token)));
 }
 
 export const register = (model: RegisterModel): Promise<void> => {
-    return postHttp<void>("/auth/singup", model);
+    return fetch("http://localhost:8081/api/v1/users", {
+        body: JSON.stringify(model),
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(() => {});
 }
