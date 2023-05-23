@@ -13,7 +13,7 @@ const defaultState: UserState = JSON.parse(localStorage.getItem("auth") || 'null
 
 setTimeout(() => {
     if (defaultState.isLogged) {
-        fetch('http://localhost:8081/api/v1/users/me', {
+        fetch(`${process.env.REACT_APP_AUTH_SERVER_URL || '/auth/api/v1'}/users/me`, {
                 headers: {
                     "Authorization": `Bearer ${defaultState.accessToken}`
                 }
@@ -25,7 +25,7 @@ setTimeout(() => {
             })))
             .catch(e => store.dispatch(logoutAction()))
     }
-}, 1000)
+}, 100)
 
 export const userSlice = createSlice({
     name: 'userSlice',

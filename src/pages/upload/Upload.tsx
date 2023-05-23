@@ -11,11 +11,7 @@ import {store} from "../../store/store";
 import {error, success} from "../../store/snack.reducer";
 
 export const urlToBase64 = (url?: string) => {
-    if (!url) {
-        return '';
-    }
-
-    return url.split('base64,', 2)[1];
+    return url || '';
 }
 
 export const UploadPage = () => {

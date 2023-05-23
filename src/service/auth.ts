@@ -15,7 +15,7 @@ export interface TokenModel {
 }
 
 export const login = (username: string, password: string) => {
-    return fetch("http://localhost:8081/api/v1/auth/login", {
+    return fetch(`${process.env.REACT_APP_AUTH_SERVER_URL || '/auth/api/v1'}/auth/login`, {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {
@@ -27,7 +27,7 @@ export const login = (username: string, password: string) => {
 }
 
 export const register = (model: RegisterModel): Promise<void> => {
-    return fetch("http://localhost:8081/api/v1/users", {
+    return fetch(`${process.env.REACT_APP_AUTH_SERVER_URL || '/auth/api/v1'}/users`, {
         body: JSON.stringify(model),
         method: 'POST',
         headers: {
